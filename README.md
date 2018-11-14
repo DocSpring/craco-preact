@@ -1,23 +1,21 @@
-[![Build Status](https://travis-ci.org/FormAPI/craco-less.svg?branch=master)](https://travis-ci.org/FormAPI/craco-less)
-[![Coverage Status](https://coveralls.io/repos/github/FormAPI/craco-less/badge.svg?branch=master)](https://coveralls.io/github/FormAPI/craco-less?branch=master)
+[![Build Status](https://travis-ci.org/FormAPI/craco-preact.svg?branch=master)](https://travis-ci.org/FormAPI/craco-preact)
+[![Coverage Status](https://coveralls.io/repos/github/FormAPI/craco-preact/badge.svg?branch=master)](https://coveralls.io/github/FormAPI/craco-preact?branch=master)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-# Craco Less Plugin
+# Craco Preact Plugin
 
-This is a [craco](https://github.com/sharegate/craco) plugin that adds Less support to [create-react-app](https://facebook.github.io/create-react-app/) version >= 2.
+This is a [craco](https://github.com/sharegate/craco) plugin that sets up [Preact](https://preactjs.com/) for [create-react-app](https://facebook.github.io/create-react-app/) version >= 2.
+
+This plugin add the `preact-compat` alias so that `import React from 'react'` will be translated to `import React from 'preact-compat'`. (`preact-compat` is a drop-in replacement for React with the same API.)
 
 > Use [react-app-rewired](https://github.com/timarney/react-app-rewired) for `create-react-app` version 1.
 
-## Ant Design
-
-If you want to use [Ant Design](https://ant.design/) with `create-react-app`,
-you should use the [`craco-antd`](https://github.com/FormAPI/craco-antd) plugin.
-`craco-antd` includes Less and `babel-plugin-import` (to only include the required CSS.) It also makes it easy to customize the theme variables.
-
 ## Supported Versions
 
-`craco-less` is tested with:
+`craco-preact` is tested with:
 
+- `preact`: `^8.3.1`
+- `preact-compat`: `^3.18.4`
 - `react-scripts`: `^2.1.1`
 - `@craco/craco`: `^2.2.3`
 
@@ -25,54 +23,90 @@ you should use the [`craco-antd`](https://github.com/FormAPI/craco-antd) plugin.
 
 First, follow the [`craco` Installation Instructions](https://github.com/sharegate/craco/blob/master/packages/craco/README.md##installation) to install the `craco` package, create a `craco.config.js` file, and modify the scripts in your `package.json`.
 
-Then install `craco-less`:
+Then install `craco-preact`:
 
 ```bash
-$ yarn add craco-less
+$ yarn add craco-preact
 
 # OR
 
-$ npm i -S craco-less
+$ npm i -S craco-preact
 ```
 
 ## Usage
 
-Here is a complete `craco.config.js` configuration file that adds Less compilation to `create-react-app`:
+Here is a complete `craco.config.js` configuration file that adds `preact-compat` to the `create-react-app` webpack config:
 
 ```js
-const CracoLessPlugin = require("craco-less");
-
 module.exports = {
-  plugins: [{ plugin: CracoLessPlugin }]
+  plugins: [{ plugin: require("craco-preact") }]
 };
 ```
 
-Pass an `options` object to configure the `less-loader` options:
+This plugin does not have any options.
+
+> [View the "Switching to Preact" Documentation](https://preactjs.com/guide/switching-to-preact).
+
+## Why did you release this as a plugin? Isn't it just one line in my `craco` config?
+
+#### TL;DR:
+
+- Automatically install the `preact` and `preact-compat` dependencies
+- Easy to update everything by runnning `yarn upgrade`
+- Documentation about using Preact with `create-react-app`
+- A repo where you can open issues and ask questions
+
+---
+
+Yes, it's really easy to add the `preact-compat` alias to your `craco.config.js`:
 
 ```js
-const CracoLessPlugin = require("craco-less");
-
 module.exports = {
-  plugins: [
-    {
-      plugin: CracoLessPlugin,
-      options: {
-        modifyVars: {
-          "@primary-color": "#1DA57A",
-          "@link-color": "#1DA57A",
-          "@border-radius-base": "2px"
-        },
-        javascriptEnabled: true
-      }
-    }
-  ]
+  webpack: {
+    alias: { react: "preact-compat", "react-dom": "preact-compat" }
+  }
 };
 ```
 
-> [View the less-loader Documentation](https://webpack.js.org/loaders/less-loader/).
+However, `create-react-app`, `craco`, or `webpack` will probably change something in the future, and then you'll have to search GitHub and StackOverflow to figure out why your app is broken.
+
+If you are using the `craco-preact` plugin, you can simply run:
+
+```bash
+$ yarn upgrade craco-preact
+
+# OR
+
+$ npm update craco-preact
+```
+
+You just need to run `yarn upgrade` to update to the latest versions of `create-react-app`, `webpack`, `craco`, `preact`, `preact-compat`, and `craco-preact`, and everything should work out of the box.
+
+Also note that `craco-preact` includes `preact` and `preact-compat` as a dependency, so you don't need to add these libraries to your own `package.json`.
+
+This plugin has a test suite with 100% test coverage. FormAPI uses the `craco-preact` plugin in our own applications, and we like to keep up to date with the latest version of `create-react-app`.
+
+The `craco-preact` repository (and this README) can also serve as a central source of information for anyone who is interested in using Preact with `create-react-app`. Please feel free to open an issue if you have any questions or suggestions.
+
+[FormAPI](https://formapi.io) is committed to maintaining the `craco-preact` plugin. We will update this plugin (and documentation) so that it works with the latest versions of `react-scripts` (from `create-react-app`), and `craco`. Please open an issue if something breaks, and we'll fix it as soon as possible.
+
+## Should I use the `preact-compat` alias?
+
+If you are using a React component library such as [Ant Design](https://ant.design/), these React components should work out of the box with the `preact-compat` alias. However, Preact does not currently support some of the very latest features in React 16+, such as Hooks and Suspense. Here is the [Preact GitHub issue about adding the Hooks API](https://github.com/developit/preact/issues/1247). Here are some more Preact issues about supporting other features in React 16+:
+
+- [#468 - Beyond (P)react 16](https://github.com/developit/preact-compat/issues/468)
+- [#432 - Will Preact stay API compatible with React 16?](https://github.com/developit/preact-compat/issues/432)
+
+> (We have subscribed to these issues, and will update this README if anything changes.)
+
+If you are building a new Preact app from scratch and you don't need any React libraries, then **you don't need the `craco-preact` plugin**. Instead, you should follow the [Preact "Getting Started" documentation](https://preactjs.com/guide/getting-started).
+
+You should still be able to use the `create-react-app` webpack config with a native Preact application. Just be aware that `npm install` will always install an unused copy of React, because this is a dependency of `react-scripts`. This is not an issue. React will not be included in your webpack build unless you explicitly require it with an `import` statement. (If you use the `craco-preact` plugin, then all `import 'react'` statements are translated to `import 'preact'`.)
+
+## Further Configuration
 
 If you need to configure anything else for the webpack build, take a look at the
-[Configuration Overview section in the `craco` README](https://github.com/sharegate/craco/blob/master/packages/craco/README.md#configuration-overview). You can use `CracoLessPlugin` while making other changes to `babel` and `webpack`, etc.
+[Configuration Overview section in the `craco` README](https://github.com/sharegate/craco/blob/master/packages/craco/README.md#configuration-overview). You can use `CracoPreactPlugin` while making other changes to `babel` and `webpack`, etc.
 
 ## Contributing
 

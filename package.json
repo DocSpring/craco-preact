@@ -1,25 +1,26 @@
 {
-  "name": "craco-less",
-  "version": "1.0.5",
-  "description": "A Less plugin for craco / react-scripts / create-react-app ",
-  "main": "lib/craco-less.js",
+  "name": "craco-preact",
+  "version": "1.0.0",
+  "description": "A Preact plugin for craco / react-scripts / create-react-app ",
+  "main": "lib/craco-preact.js",
   "scripts": {
     "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/FormAPI/craco-less.git"
+    "url": "git+ssh://git@github.com/FormAPI/craco-preact.git"
   },
   "keywords": [
+    "preact",
     "craco",
     "create-react-app"
   ],
   "author": "Nathan Broadbent",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/FormAPI/craco-less/issues"
+    "url": "https://github.com/FormAPI/craco-preact/issues"
   },
-  "homepage": "https://github.com/FormAPI/craco-less#readme",
+  "homepage": "https://github.com/FormAPI/craco-preact#readme",
   "devDependencies": {
     "clone": "^2.1.2",
     "coveralls": "^3.0.2",
@@ -27,11 +28,9 @@
   },
   "dependencies": {
     "@craco/craco": "^2.2.3",
-    "css-loader": "^1.0.1",
-    "less": "^3.8.1",
-    "less-loader": "^4.1.0",
     "react-scripts": "^2.1.1",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.19.1"
+    "webpack": "^4.19.1",
+    "preact": "^8.3.1",
+    "preact-compat": "^3.18.4"
   }
 }
