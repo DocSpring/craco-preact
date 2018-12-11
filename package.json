@@ -1,6 +1,6 @@
 {
   "name": "craco-preact",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Preact plugin for craco / react-scripts / create-react-app ",
   "main": "lib/craco-preact.js",
   "scripts": {
@@ -27,7 +27,7 @@
     "jest": "^23.6.0"
   },
   "dependencies": {
-    "@craco/craco": "^2.2.3",
+    "@craco/craco": "^3.2.2",
     "react-scripts": "^2.1.1",
     "webpack": "^4.19.1",
     "preact": "^8.3.1",

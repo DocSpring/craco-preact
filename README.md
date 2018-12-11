@@ -17,7 +17,7 @@ This plugin add the `preact-compat` alias so that `import React from 'react'` wi
 - `preact`: `^8.3.1`
 - `preact-compat`: `^3.18.4`
 - `react-scripts`: `^2.1.1`
-- `@craco/craco`: `^2.2.3`
+- `@craco/craco`: `^3.2.2`
 
 ## Installation
 
@@ -46,49 +46,6 @@ module.exports = {
 This plugin does not have any options.
 
 > [View the "Switching to Preact" Documentation](https://preactjs.com/guide/switching-to-preact).
-
-## Why did you release this as a plugin? Isn't it just one line in my `craco` config?
-
-#### TL;DR:
-
-- Automatically install the `preact` and `preact-compat` dependencies
-- Easy to update everything by runnning `yarn upgrade`
-- Documentation about using Preact with `create-react-app`
-- A repo where you can open issues and ask questions
-
----
-
-Yes, it's really easy to add the `preact-compat` alias to your `craco.config.js`:
-
-```js
-module.exports = {
-  webpack: {
-    alias: { react: "preact-compat", "react-dom": "preact-compat" }
-  }
-};
-```
-
-However, `create-react-app`, `craco`, or `webpack` will probably change something in the future, and then you'll have to search GitHub and StackOverflow to figure out why your app is broken.
-
-If you are using the `craco-preact` plugin, you can simply run:
-
-```bash
-$ yarn upgrade craco-preact
-
-# OR
-
-$ npm update craco-preact
-```
-
-You just need to run `yarn upgrade` to update to the latest versions of `create-react-app`, `webpack`, `craco`, `preact`, `preact-compat`, and `craco-preact`, and everything should work out of the box.
-
-Also note that `craco-preact` includes `preact` and `preact-compat` as a dependency, so you don't need to add these libraries to your own `package.json`.
-
-This plugin has a test suite with 100% test coverage. FormAPI uses the `craco-preact` plugin in our own applications, and we like to keep up to date with the latest version of `create-react-app`.
-
-The `craco-preact` repository (and this README) can also serve as a central source of information for anyone who is interested in using Preact with `create-react-app`. Please feel free to open an issue if you have any questions or suggestions.
-
-[FormAPI](https://formapi.io) is committed to maintaining the `craco-preact` plugin. We will update this plugin (and documentation) so that it works with the latest versions of `react-scripts` (from `create-react-app`), and `craco`. Please open an issue if something breaks, and we'll fix it as soon as possible.
 
 ## Should I use the `preact-compat` alias?
 
