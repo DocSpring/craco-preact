@@ -6,7 +6,7 @@
 
 This is a [craco](https://github.com/sharegate/craco) plugin that sets up [Preact](https://preactjs.com/) for [create-react-app](https://facebook.github.io/create-react-app/) version >= 2.
 
-This plugin add the `preact-compat` alias so that `import React from 'react'` will be translated to `import React from 'preact-compat'`. (`preact-compat` is a drop-in replacement for React with the same API.)
+This plugin add the `preact/compat` alias so that `import React from 'react'` will be translated to `import React from 'preact/compat'`. (`preact/compat` is a drop-in replacement for React with the same API.)
 
 > Use [react-app-rewired](https://github.com/timarney/react-app-rewired) for `create-react-app` version 1.
 
@@ -14,28 +14,18 @@ This plugin add the `preact-compat` alias so that `import React from 'react'` wi
 
 `craco-preact` is tested with:
 
-- `preact`: `^8.3.1`
-- `preact-compat`: `^3.18.4`
-- `react-scripts`: `^2.1.1`
-- `@craco/craco`: `^3.2.2`
+- `preact`: `^10.4.7`
+- `preact/compat`: `^10.4.7`
+- `react-scripts`: `^4.42.0`
+- `@craco/craco`: `^5.6.4`
 
 ## Installation
 
 First, follow the [`craco` Installation Instructions](https://github.com/sharegate/craco/blob/master/packages/craco/README.md##installation) to install the `craco` package, create a `craco.config.js` file, and modify the scripts in your `package.json`.
 
-Then install `craco-preact`:
-
-```bash
-$ yarn add craco-preact
-
-# OR
-
-$ npm i -S craco-preact
-```
-
 ## Usage
 
-Here is a complete `craco.config.js` configuration file that adds `preact-compat` to the `create-react-app` webpack config:
+Here is a complete `craco.config.js` configuration file that adds `preact/compat` to the `create-react-app` webpack config:
 
 ```js
 module.exports = {
@@ -47,9 +37,9 @@ This plugin does not have any options.
 
 > [View the "Switching to Preact" Documentation](https://preactjs.com/guide/switching-to-preact).
 
-## Should I use the `preact-compat` alias?
+## Should I use the `preact/compat` alias?
 
-If you are using a React component library such as [Ant Design](https://ant.design/), these React components should work out of the box with the `preact-compat` alias. However, Preact does not currently support some of the very latest features in React 16+, such as Hooks and Suspense. Here is the [Preact GitHub issue about adding the Hooks API](https://github.com/developit/preact/issues/1247). Here are some more Preact issues about supporting other features in React 16+:
+If you are using a React component library such as [Ant Design](https://ant.design/), these React components should work out of the box with the `preact/compat` alias. However, Preact does not currently support some of the very latest features in React 16+, such as Hooks and Suspense. Here is the [Preact GitHub issue about adding the Hooks API](https://github.com/developit/preact/issues/1247). Here are some more Preact issues about supporting other features in React 16+:
 
 - [#468 - Beyond (P)react 16](https://github.com/developit/preact-compat/issues/468)
 - [#432 - Will Preact stay API compatible with React 16?](https://github.com/developit/preact-compat/issues/432)
