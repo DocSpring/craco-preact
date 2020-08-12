@@ -36,11 +36,10 @@
     "prettier": "^1.15.3"
   },
   "dependencies": {
-    "@craco/craco": "^3.2.2",
-    "react-scripts": "^2.1.1",
-    "webpack": "^4.19.1",
-    "preact": "^8.3.1",
-    "preact-compat": "^3.18.4"
+    "@craco/craco": "^5.6.4",
+    "react-scripts": "^3.4.1",
+    "webpack": "^4.42.0",
+    "preact": "^10.4.7"
   },
   "husky": {
     "hooks": {
